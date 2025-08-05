@@ -68,8 +68,8 @@ resources:
      cpu: 5m
      memory: 10Mi
    requests:
-     cpu: 2m
-     memory: 8Mi
+     cpu: 1m
+     memory: 4Mi
 
 livenessProbe:
   httpGet:
@@ -80,11 +80,26 @@ readinessProbe:
     path: /
     port: http
 
-autoscaling:
-  enabled: false
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: my-app-login-app-hpa
+  namespace: prod
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: my-app-login-app
   minReplicas: 1
-  maxReplicas: 2
-  targetCPUUtilizationPercentage: 80
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
