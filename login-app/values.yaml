@@ -65,11 +65,11 @@ resources:
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
    limits:
-     cpu: 5m
-     memory: 10Mi
+     cpu: 10m
+     memory: 40Mi
    requests:
-     cpu: 1m
-     memory: 4Mi
+     cpu: 5m
+     memory: 20Mi
 
 livenessProbe:
   httpGet:
