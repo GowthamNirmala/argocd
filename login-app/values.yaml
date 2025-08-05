@@ -80,24 +80,11 @@ readinessProbe:
     path: /
     port: http
 
-
-metadata:
-  name: my-app-login-app-hpa
-  namespace: prod
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: my-app-login-app
+autoscaling:
+  enabled: true
   minReplicas: 1
   maxReplicas: 5
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 50
+  targetCPUUtilizationPercentage: 50
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
