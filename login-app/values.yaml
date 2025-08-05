@@ -80,9 +80,7 @@ readinessProbe:
     path: /
     port: http
 
----
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
+
 metadata:
   name: my-app-login-app-hpa
   namespace: prod
