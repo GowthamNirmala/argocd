@@ -75,10 +75,14 @@ livenessProbe:
   httpGet:
     path: /
     port: 80
+  initialDelaySeconds: 5
+  periodSeconds: 10
 readinessProbe:
   httpGet:
     path: /
     port: 80
+  initialDelaySeconds: 5
+  periodSeconds: 10
 
 autoscaling:
   enabled: true
