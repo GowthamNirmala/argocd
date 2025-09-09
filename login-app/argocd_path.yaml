@@ -7,10 +7,12 @@ spec:
   project: default
   source:
     repoURL: https://github.com/GowthamNirmala/argocd.git
-    path: login-app
     targetRevision: main
+    path: login-app    # path to the Helm chart (current folder)
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: prod
-  syncPolicy: {}   # monitor-only, no automated sync
-
+  syncPolicy: {}   # monitor only, no auto-sync
